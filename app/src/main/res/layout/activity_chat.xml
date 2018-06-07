@@ -12,7 +12,7 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:title="@string/app_name"
-        app:titleTextColor="@color/colorblanco"
+        app:titleTextColor="@color/colorBlanco"
         android:theme="?attr/actionBarTheme" />
 
     <ListView
