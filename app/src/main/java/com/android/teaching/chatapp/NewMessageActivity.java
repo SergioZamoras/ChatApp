@@ -27,7 +27,7 @@ public class NewMessageActivity extends AppCompatActivity {
             return messageText;
         }
 
-        public void setMessageText(String messageText) {
+        public void setMessage_Text(String messageText) {
             this.messageText = messageText;
         }
 
