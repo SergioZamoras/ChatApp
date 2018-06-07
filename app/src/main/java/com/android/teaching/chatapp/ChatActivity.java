@@ -3,9 +3,10 @@ package com.android.teaching.chatapp;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,12 +18,36 @@ import com.google.firebase.database.FirebaseDatabase;
 public class ChatActivity extends AppCompatActivity {
 
     private FirebaseListAdapter<NewMessageActivity> adapter;
-    RelativeLayout activity_chat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText input = (EditText)findViewById(R.id.input);
+
+
+                FirebaseDatabase.getInstance()
+                        .getReference()
+                        .push()
+                        .setValue(new ChatMessage(input.getText().toString(),
+                                FirebaseAuth.getInstance()
+                                        .getCurrentUser()
+                                        .getDisplayName())
+                        );
+
+                // LIADA GRANDE
+                input.setText("");
+            }
+        });
+
+
     }
 
 
@@ -48,6 +73,41 @@ public class ChatActivity extends AppCompatActivity {
         };
         listOfMessage.setAdapter(adapter);
     }
+    public void onClick(View view) {
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("ChatActivity", "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("ChatActivity", "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("ChatActivity", "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("ChatActivity", "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("ChatActivity", "onDestroy");
+    }
+}
 }
 
 

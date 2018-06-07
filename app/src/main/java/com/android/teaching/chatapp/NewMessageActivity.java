@@ -36,12 +36,7 @@ public class NewMessageActivity extends AppCompatActivity {
 
                     FirebaseDatabase.getInstance()
                             .getReference()
-                            .push()
-                            .setValue(new NewMessageActivity(input.getText().toString(),
-                                    FirebaseAuth.getInstance()
-                                            .getCurrentUser()
-                                            .getDisplayName())
-                            );
+                            .push();
 
                     input.setText("");
                 }
